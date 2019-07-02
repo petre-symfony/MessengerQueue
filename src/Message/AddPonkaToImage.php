@@ -4,6 +4,20 @@
 namespace App\Message;
 
 
-class AddPonkaToImage {
+use App\Entity\ImagePost;
 
+class AddPonkaToImage {
+	/**
+	 * @var ImagePost
+	 */
+	private $imagePost;
+
+	public function __construct(ImagePost $imagePost){
+
+		$this->imagePost = $imagePost;
+	}
+
+	public function getImagePost(){
+		return $this->imagePost;
+	}
 }

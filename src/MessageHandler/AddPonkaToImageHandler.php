@@ -35,6 +35,7 @@ class AddPonkaToImageHandler implements MessageHandlerInterface {
 	}
 
 	public function __invoke(AddPonkaToImage $addPonkaToImage) {
+		$imagePost = $addPonkaToImage->getImagePost();
 		$updatedContents = $this->ponkaficator->ponkafy(
 			$this->photoManager->read($imagePost->getFilename())
 		);
