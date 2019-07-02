@@ -39,7 +39,6 @@ class ImagePostController extends AbstractController {
 	  ValidatorInterface $validator,
 	  PhotoFileManager $photoManager,
 	  EntityManagerInterface $entityManager,
-	  PhotoPonkaficator $ponkaficator,
 		MessageBusInterface $messageBus
   ) {
     /** @var UploadedFile $imageFile */
@@ -64,19 +63,6 @@ class ImagePostController extends AbstractController {
 
     $message = new AddPonkaToImage();
     $messageBus->dispatch($message);
-
-    /*
-     * Start Ponkafication!
-     */
-    $updatedContents = $ponkaficator->ponkafy(
-      $photoManager->read($imagePost->getFilename())
-    );
-    $photoManager->update($imagePost->getFilename(), $updatedContents);
-    $imagePost->markAsPonkaAdded();
-    $entityManager->flush();
-    /*
-     * You've been Ponkafied!
-     */
 
     return $this->toJson($imagePost, 201);
   }
