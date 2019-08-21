@@ -11,5 +11,6 @@ framework:
 
     routing:
       # Route your messages to the transports
-      'App\Message\AddPonkaToImage': async
+      'App\Message\AddPonkaToImage': [async, something else]
       'App\Message\DeletePhotoFile': async
+      'App\Message\AsyncMessageInterface': async
