@@ -68,7 +68,7 @@ class ImagePostController extends AbstractController {
     $envelope = new Envelope($message, [
     	new DelayStamp(5000)
     ]);
-    $messageBus->dispatch($envelope);
+    dump($messageBus->dispatch($envelope));
 
     return $this->toJson($imagePost, 201);
   }
