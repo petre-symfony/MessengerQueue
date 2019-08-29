@@ -8,6 +8,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Middleware\MiddlewareInterface;
 use Symfony\Component\Messenger\Middleware\StackInterface;
+use Symfony\Component\Messenger\Stamp\ReceivedStamp;
 
 class AuditMiddleware implements MiddlewareInterface {
 	private $logger;
@@ -28,6 +29,12 @@ class AuditMiddleware implements MiddlewareInterface {
 			'id' => $stamp->getUniqueId(),
 			'class' => get_class($envelope->getMessage())
 		];
+
+		if ($envelope->last(ReceivedStamp::class)){
+			$this->logger->info('[{id}] Received a handling {class}', $context);
+		} else {
+			$this->logger->info('[{id}] Handling or sending {class}', $context);
+		}
 
 		return $stack->next()->handle($envelope, $stack);
 	}
