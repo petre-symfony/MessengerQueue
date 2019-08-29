@@ -19,5 +19,5 @@ class UniqueIdStamp implements StampInterface {
 	public function getUniqueId(): string {
 		return $this->uniqueId;
 	}
-	
+
 }
