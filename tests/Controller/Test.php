@@ -19,6 +19,6 @@ class ImagePostControllerTest extends WebTestCase {
 		]);
 
 
-		dd($client->getResponse()->getContent());
+		$this->assertResponseIsSuccessful();
 	}
 }
