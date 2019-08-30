@@ -2,10 +2,23 @@
 
 namespace App\Tests\Controller;
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ImagePostControllerTest extends WebTestCase {
 	public function testCreate(){
-		$this->assertEquals(42,42;
+		$client = static::createClient();
+
+		$uploadedFile = new UploadedFile(
+			__DIR__.'/../Fixtures/diaconescu.jpg',
+			'diaconescu.jpg'
+		);
+
+		$client->request('POST', '/api/images', [], [
+			'file' => $uploadedFile
+		]);
+
+
+		dd($client->getResponse()->getContent());
 	}
 }
