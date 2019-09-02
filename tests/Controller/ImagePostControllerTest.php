@@ -20,5 +20,9 @@ class ImagePostControllerTest extends WebTestCase {
 
 
 		$this->assertResponseIsSuccessful();
+
+
+		$transport = self::$container->get('messenger.transport.async_priority_high');
+		dd($transport);
 	}
 }
