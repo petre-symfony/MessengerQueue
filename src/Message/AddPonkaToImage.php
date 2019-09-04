@@ -10,11 +10,11 @@ class AddPonkaToImage {
 	/**
 	 * @var ImagePost
 	 */
-	private $imagePost;
+	private $imagePostId;
 
 	public function __construct(int $imagePostId){
 
-		$this->imagePost = $imagePostId;
+		$this->imagePostId = $imagePostId;
 	}
 
 	public function getImagePostId():int{
