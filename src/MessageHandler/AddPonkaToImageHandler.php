@@ -59,6 +59,9 @@ class AddPonkaToImageHandler implements MessageHandlerInterface, LoggerAwareInte
 			return;
 		}
 
+		//want other parts of the system to be able to tell us
+		//which ponka image to use
+		
 		$updatedContents = $this->photoPonkaficator->ponkafy(
 			$this->photoManager->read($imagePost->getFilename())
 		);
