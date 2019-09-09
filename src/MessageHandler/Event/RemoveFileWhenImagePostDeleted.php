@@ -8,7 +8,7 @@ use App\Message\Event\ImagePostDeletedEvent;
 use App\Photo\PhotoFileManager;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
-class RemoveFileWhenImagePostDeleted {
+class RemoveFileWhenImagePostDeleted implements MessageHandlerInterface {
 
 	/**
 	 * @var PhotoFileManager
