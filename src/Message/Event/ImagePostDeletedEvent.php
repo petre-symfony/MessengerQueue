@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Event;
+namespace App\Message\Event;
 
 
 class ImagePostDeletedEvent {

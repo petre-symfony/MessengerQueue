@@ -4,7 +4,7 @@
 namespace App\MessageHandler\Event;
 
 
-use App\Event\ImagePostDeletedEvent;
+use App\Message\Event\ImagePostDeletedEvent;
 use App\Photo\PhotoFileManager;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 

@@ -4,6 +4,7 @@
 namespace App\MessageHandler;
 
 
+use App\Message\Event\ImagePostDeletedEvent;
 use App\Message\DeleteImagePost;
 use Doctrine\ORM\EntityManagerInterface;
 use http\Message;
@@ -14,17 +15,17 @@ class DeleteImagePostHandler implements MessageHandlerInterface {
 	/**
 	 * @var MessageBusInterface
 	 */
-	private $messageBus;
+	private $eventBus;
 	/**
 	 * @var EntityManagerInterface
 	 */
 	private $entityManager;
 
 	public function __construct(
-		MessageBusInterface $messageBus,
+		MessageBusInterface $eventBus,
 		EntityManagerInterface $entityManager
 	) {
-		$this->messageBus = $messageBus;
+		$this->eventBus = $eventBus;
 		$this->entityManager = $entityManager;
 	}
 
@@ -35,6 +36,6 @@ class DeleteImagePostHandler implements MessageHandlerInterface {
 		$this->entityManager->remove($imagePost);
 		$this->entityManager->flush();
 
-		//$this->messageBus->dispatch(new DeletePhotoFile($filename));
+		$this->eventBus->dispatch(new ImagePostDeletedEvent($filename));
 	}
 }
