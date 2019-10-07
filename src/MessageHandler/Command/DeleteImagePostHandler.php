@@ -43,7 +43,8 @@ class DeleteImagePostHandler implements MessageSubscriberInterface {
 	public static function getHandledMessages(): iterable{
 		yield DeleteImagePost::class => [
 			'method' => '__invoke',
-			'priority' => 10
+			'priority' => 10,
+			'from_transport' => 'async'
 		];
 	}
 
