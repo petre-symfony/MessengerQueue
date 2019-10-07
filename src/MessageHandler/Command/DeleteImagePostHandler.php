@@ -30,7 +30,7 @@ class DeleteImagePostHandler implements MessageSubscriberInterface {
 		$this->entityManager = $entityManager;
 	}
 
-	public function __invoke(DeleteImagePost $deleteImagePost) {
+	public function __invoke($deleteImagePost) {
 		$imagePost = $deleteImagePost->getImagePost();
 		$filename = $imagePost->getFilename();
 
