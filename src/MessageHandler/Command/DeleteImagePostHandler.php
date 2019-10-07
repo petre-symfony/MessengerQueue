@@ -30,7 +30,7 @@ class DeleteImagePostHandler implements MessageSubscriberInterface {
 		$this->entityManager = $entityManager;
 	}
 
-	public function __invoke($deleteImagePost) {
+	public function __invoke(DeleteImagePost $deleteImagePost) {
 		$imagePost = $deleteImagePost->getImagePost();
 		$filename = $imagePost->getFilename();
 
@@ -41,7 +41,10 @@ class DeleteImagePostHandler implements MessageSubscriberInterface {
 	}
 
 	public static function getHandledMessages(): iterable{
-		yield DeleteImagePost::class;
+		yield DeleteImagePost::class => [
+			'method' => '__invoke',
+			'priority' => 10
+		];
 	}
 
 }
