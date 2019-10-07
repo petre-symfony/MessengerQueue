@@ -9,9 +9,10 @@ use App\Message\Command\DeleteImagePost;
 use Doctrine\ORM\EntityManagerInterface;
 use http\Message;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
+use Symfony\Component\Messenger\Handler\MessageSubscriberInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 
-class DeleteImagePostHandler implements MessageHandlerInterface {
+class DeleteImagePostHandler implements MessageSubscriberInterface {
 	/**
 	 * @var MessageBusInterface
 	 */
@@ -38,4 +39,9 @@ class DeleteImagePostHandler implements MessageHandlerInterface {
 
 		$this->eventBus->dispatch(new ImagePostDeletedEvent($filename));
 	}
+
+	public static function getHandledMessages(): iterable{
+		yield DeleteImagePost::class;
+	}
+
 }
