@@ -17,7 +17,7 @@ yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
 ###> CUSTOM ###
-public/uploads/images
+public/uploads/images/
 ###< CUSTOM ###
 
 ###> symfony/phpunit-bridge ###
