@@ -3,6 +3,7 @@ namespace App\Messenger;
 
 
 use Symfony\Component\Messenger\Envelope;
+use Symfony\Component\Messenger\Exception\MessageDecodingFailedException;
 use Symfony\Component\Messenger\Stamp\BusNameStamp;
 use Symfony\Component\Messenger\Transport\Serialization\SerializerInterface;
 use App\Message\Command\LogEmoji;
@@ -13,6 +14,11 @@ class ExternalJsonMessageSerializer implements SerializerInterface {
 		$headers = $encodedEnvelope['headers'];
 
 		$data = json_decode($body, true);
+
+		if (null === $data) {
+			throw new MessageDecodingFailedException('Invalid JSON');
+		}
+
 		$message = new LogEmoji($data['emoji']);
 
 		$envelope =  new Envelope($message);
