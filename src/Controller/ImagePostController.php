@@ -22,6 +22,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use App\Message\Command\LogEmoji;
 
 class ImagePostController extends AbstractController {
   /**
@@ -72,6 +73,8 @@ class ImagePostController extends AbstractController {
     ]);
 
     $messageBus->dispatch($envelope);
+
+    $messageBus->dispatch(new LogEmoji(2));
 
     return $this->toJson($imagePost, 201);
   }
