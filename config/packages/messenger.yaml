@@ -40,6 +40,13 @@ framework:
           queues:
             messages_high:
               binding_keys: [high]
+      external_messages:
+        dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+        options:
+          auto_setup: false
+          queues:
+            messages_from_external: ~
+
       failed: 'doctrine://default?queue_name=failed'
       # sync: 'sync://'
 
