@@ -42,6 +42,7 @@ framework:
               binding_keys: [high]
       external_messages:
         dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+        serializer: App\Messenger\ExternalJsonMessageSerializer
         options:
           auto_setup: false
           queues:
