@@ -23,6 +23,14 @@ class ExternalJsonMessageSerializer implements SerializerInterface {
 			throw new MessageDecodingFailedException('Missing the emoji key');
 		}
 
+		return $this->createLogEmojiEnvelope($data);
+	}
+
+	public function encode(Envelope $envelope): array {
+		throw new \Exception('Transport & serializer not meant for sending messages');
+	}
+
+	private function createLogEmojiEnvelope(array $data): Envelope {
 		$message = new LogEmoji($data['emoji']);
 
 		$envelope =  new Envelope($message);
@@ -32,9 +40,4 @@ class ExternalJsonMessageSerializer implements SerializerInterface {
 
 		return $envelope;
 	}
-
-	public function encode(Envelope $envelope): array {
-		throw new \Exception('Transport & serializer not meant for sending messages');
-	}
-
 }
