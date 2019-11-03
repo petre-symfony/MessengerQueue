@@ -20,7 +20,7 @@ class ExternalJsonMessageSerializer implements SerializerInterface {
 		}
 
 		if(!isset($data['emoji'])){
-			throw new \Exception('Missing the emoji key');
+			throw new MessageDecodingFailedException('Missing the emoji key');
 		}
 
 		$message = new LogEmoji($data['emoji']);
