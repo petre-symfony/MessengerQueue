@@ -23,7 +23,18 @@ class ExternalJsonMessageSerializer implements SerializerInterface {
 			throw new MessageDecodingFailedException('Missing the emoji key');
 		}
 
-		return $this->createLogEmojiEnvelope($data);
+		if (!isset($headers['type'])){
+			throw new MessageDecodingFailedException('Missing "type" header');
+		}
+
+		switch($headers['type']){
+			case 'emoji':
+				return $this->createLogEmojiEnvelope($data);
+			// case 'delete_photo':
+			//	break;
+		}
+
+		throw new MessageDecodingFailedException(sprintf('Invalid type "%s"', $headers['type']));
 	}
 
 	public function encode(Envelope $envelope): array {
